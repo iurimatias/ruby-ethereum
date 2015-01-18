@@ -5,3 +5,5 @@ require 'pry'
 require 'eventmachine'
 
 require_relative 'rlp'
+require_relative 'version'
+
