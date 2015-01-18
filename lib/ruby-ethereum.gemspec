@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = "ruby-ethereum"
   #s.version     = RubyEthereum::VERSION
   s.version     = "0.0.1"
-  s.authors     = ["Iuri Matias"]
-  s.email       = ["iuri.matias@gmail.com"]
+  s.authors     = ["Iuri Matias", "Anthony Laibe"]
+  s.email       = ["iuri.matias@gmail.com", "anthony@laibe.cc"]
   s.homepage    = "https://github.com/iurimatias/ruby-ethereum"
   s.summary     = %q{}
   s.description = %q{}
