@@ -6,7 +6,7 @@ class RLP
     # '' is a special case, treated same as 0
     #s = string.encode('hex') or '0'
     #return long(s, 16)
-    string_to_int(string)
+    Utils.string_to_int(string)
   end
 
   def self.__decode(s, pos=0)

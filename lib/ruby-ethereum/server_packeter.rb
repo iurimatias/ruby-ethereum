@@ -4,7 +4,7 @@ class ServerPackets
     network_protocol_version = payload[0]
     client_version = payload[1]
     capabilities = payload[2]
-    listen_port = string_to_int(payload[3])
+    listen_port = Utils.string_to_int(payload[3])
     node_id = payload[4]
 
     puts ">>>> hello from #{client_version}"
@@ -21,7 +21,7 @@ class ServerPackets
     puts "-------------------"
     payload.each do |peer|
       ip   = peer[0].each_byte.map(&:ord).join('.')
-      port = string_to_int(peer[1])
+      port = Utils.string_to_int(peer[1])
       id   = peer[2]
 
       puts "server> ip: #{ip} port: #{port}"
