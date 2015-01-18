@@ -71,22 +71,14 @@ class RLP
 
   def self.encode(s)
     if s.class.ancestors.include? String
-      #puts "encode: is a string"
       s = s.to_s
       if s.length == 1 and s.ord < 128
-        #puts "encode: length=1 and #{s.ord} < 128"
-        #puts "returning: #{s.each_byte.to_a.to_s}"
         return s
       else
-        #puts "encode: else"
-        res = encode_length(s.length, 128) + s
-        #puts "returning: #{res.each_byte.to_a.to_s}"
         return encode_length(s.length, 128) + s
       end
     elsif s.class.ancestors.include? Enumerable
-      #puts "encode: is an array"
       mapping = s.map { |x| encode(x) }
-      #puts "returning: #{concat(mapping).each_byte.to_a.to_s}"
       return concat(mapping)
     end
 
@@ -94,18 +86,10 @@ class RLP
   end
 
   def self.encode_length(l, offset)
-    #puts "encode_length: #{l} offset: #{offset}"
     if l < 56
-      #puts "encode_length: #{l} < 56"
-      res = (l + offset).chr
-      #puts "returning: #{res.ord}"
       return (l + offset).chr
     elsif l < 256 ** 8
-      #puts "encode_length: #{l} < #{256 ** 8}"
       bl = int_to_big_endian(l)
-      #puts "encode_length: big endian #{bl}"
-      res = (bl.length + offset + 55).chr + bl
-      #puts "returning: #{res.each_byte.to_a.to_s}"
       return (bl.length + offset + 55).chr + bl
     else
       raise "input too long"
@@ -118,8 +102,6 @@ class RLP
     #'''
     raise "wrong type" unless s.class.ancestors.include?(Enumerable)
     output = s.join
-    res = encode_length(output.length, 192) + output
-    #puts "returning: #{res.each_byte.to_a.to_s}"
     return encode_length(output.length, 192) + output
   end
 
