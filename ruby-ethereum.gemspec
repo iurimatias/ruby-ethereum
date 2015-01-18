@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pry"
   s.add_development_dependency "rspec"
 
-  s.add_runtime_dependency 'rlp-ruby'
   s.add_runtime_dependency 'digest-sha3'
   s.add_runtime_dependency 'fast_trie'
   s.add_runtime_dependency 'eventmachine'
