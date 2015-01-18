@@ -1,6 +1,6 @@
-module Utils
+class Utils
 
-  def int_to_big_endian(v)
+  def self.int_to_big_endian(v)
     return '' if v == 0
     hex = '%x' % v
     if (hex.length & 1) != 0
@@ -13,7 +13,7 @@ module Utils
     [hex].pack('H*')
   end
 
-  def recursive_int_to_big_endian(item)
+  def self.recursive_int_to_big_endian(item)
     if item.class.ancestors.include?(Fixnum)
       int_to_big_endian(item)
     elsif item.class.ancestors.include?(Enumerable)
@@ -23,18 +23,18 @@ module Utils
     end
   end
 
-  def ienc4(num)
+  def self.ienc4(num)
     #struct.pack('>I', num)
     [num].pack('>I').reverse
   end
 
-  def to_rlp(num)
+  def self.to_rlp(num)
     #binding.pry
     #num.to_rlp.map { |x| x == 0 ? 0x00 : int_to_big_endian(x) }.join
     MyRlp.encode(num)
   end
 
-  def string_to_int(str)
+  def self.string_to_int(str)
     binary_string = ""
     str.size.times do |i|
       num = str[i].ord.to_s(2)
