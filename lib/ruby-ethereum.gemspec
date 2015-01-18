@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-#require "ruby-ethereum/version"
+require "ruby-ethereum/version"
 
 Gem::Specification.new do |s|
   s.name        = "ruby-ethereum"
-  #s.version     = RubyEthereum::VERSION
+  s.version     = Ethereum::VERSION
   s.version     = "0.0.1"
   s.authors     = ["Iuri Matias", "Anthony Laibe"]
   s.email       = ["iuri.matias@gmail.com", "anthony@laibe.cc"]
