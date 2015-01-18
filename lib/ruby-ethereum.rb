@@ -4,11 +4,21 @@ require 'socket'
 require 'pry'
 require 'eventmachine'
 
-require_relative 'rlp'
-require_relative 'version'
+require_relative 'ruby-ethereum/block'
+require_relative 'ruby-ethereum/chain_manager'
+require_relative 'ruby-ethereum/ethereum_client'
+require_relative 'ruby-ethereum/ethereum_server'
+require_relative 'ruby-ethereum/packeter'
+require_relative 'ruby-ethereum/peer'
+require_relative 'ruby-ethereum/peer_manager'
+require_relative 'ruby-ethereum/server_packeter'
+require_relative 'ruby-ethereum/transient_block'
+require_relative 'ruby-ethereum/utils'
+require_relative 'ruby-ethereum/rlp'
+require_relative 'ruby-ethereum/version'
 
-#@remote_host = "poc-7.ethdev.com"
-@remote_host = "192.168.2.80"
+@remote_host = "poc-7.ethdev.com"
+#@remote_host = "192.168.2.80"
 @remote_port = "30303"
 
 @listen_host = "0.0.0.0"
