@@ -89,7 +89,7 @@ class RLP
     if l < 56
       return (l + offset).chr
     elsif l < 256 ** 8
-      bl = int_to_big_endian(l)
+      bl = Utils.int_to_big_endian(l)
       return (bl.length + offset + 55).chr + bl
     else
       raise "input too long"

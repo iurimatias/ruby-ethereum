@@ -125,15 +125,15 @@ class Block
     header << encode
     encoded_value = int64(@bloom)
     header << encoded_value
-    encoders = int_to_big_endian(@difficulty)
+    encoders = Utils.int_to_big_endian(@difficulty)
     header << encoders
-    encode = int_to_big_endian(@number)
+    encode = Utils.int_to_big_endian(@number)
     header << encode
-    encoded_value = int_to_big_endian(@gas_limit)
+    encoded_value = Utils.int_to_big_endian(@gas_limit)
     header << encoded_value
-    encoders = int_to_big_endian(@gas_used)
+    encoders = Utils.int_to_big_endian(@gas_used)
     header << encoders
-    encode = int_to_big_endian(@timestamp)
+    encode = Utils.int_to_big_endian(@timestamp)
     header << encode
     encode = @extra_data
     header << encode
@@ -152,7 +152,7 @@ class Block
   end
 
   def int64(v)
-    zpad(int_to_big_endian(v), 64)
+    zpad(Utils.int_to_big_endian(v), 64)
   end
 
   def zpad(x, l)
