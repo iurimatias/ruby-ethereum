@@ -28,12 +28,6 @@ class Utils
     [num].pack('>I').reverse
   end
 
-  def self.to_rlp(num)
-    #binding.pry
-    #num.to_rlp.map { |x| x == 0 ? 0x00 : int_to_big_endian(x) }.join
-    MyRlp.encode(num)
-  end
-
   def self.string_to_int(str)
     binary_string = ""
     str.size.times do |i|
