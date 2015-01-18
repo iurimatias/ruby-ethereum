@@ -4,7 +4,7 @@ class TransientBlock
                 :hex_difficulty, :difficulty, :number, :gas_limit, :gas_used, :timestamp, :extra_data, :nonce
 
   def initialize(blockdata)
-    @block_data = MyRlp.encode(blockdata)
+    @block_data = RLP.encode(blockdata)
     header_args, transaction_list, uncles = blockdata
 
     #block_structure = [
@@ -30,13 +30,13 @@ class TransientBlock
     @state_root = header_args[3]
     @tx_list_root = header_args[4]
     @receipts_root = header_args[5]
-    @bloom = MyRlp.big_endian_to_int(header_args[6])
+    @bloom = RLP.big_endian_to_int(header_args[6])
     @hex_difficulty = header_args[7]
-    @difficulty = MyRlp.big_endian_to_int(header_args[7])
-    @number = MyRlp.big_endian_to_int(header_args[8])
-    @gas_limit = MyRlp.big_endian_to_int(header_args[9])
-    @gas_used = MyRlp.big_endian_to_int(header_args[10])
-    @timestamp = MyRlp.big_endian_to_int(header_args[11])
+    @difficulty = RLP.big_endian_to_int(header_args[7])
+    @number = RLP.big_endian_to_int(header_args[8])
+    @gas_limit = RLP.big_endian_to_int(header_args[9])
+    @gas_used = RLP.big_endian_to_int(header_args[10])
+    @timestamp = RLP.big_endian_to_int(header_args[11])
     @extra_data = header_args[12]
     @nonce = header_args[13]
   end
