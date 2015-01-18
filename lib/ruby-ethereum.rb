@@ -25,7 +25,7 @@ puts "connecting to #{@remote_host}:#{@remote_port}"
 puts "listening at #{@listen_host}:#{@listen_port}"
 EM.run do
   EventMachine::connect     @remote_host, @remote_port, EthereumClient
-  EventMachine.start_server @listen_host, @listen_port, EchoServer
+  EventMachine.start_server @listen_host, @listen_port, EthereumServer
   EventMachine.add_periodic_timer(5) do
     puts "------------ Peer List ------------"
     PeerManager.list_peers.each { |peer| puts peer.ip }
