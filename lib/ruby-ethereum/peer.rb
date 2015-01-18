@@ -119,7 +119,7 @@ class Peer
     remain       = data[(8 + payload_size)..-1]
 
     begin
-    real_payload = MyRlp.decode(payload)
+    real_payload = RLP.decode(payload)
     rescue
       binding.pry
     end
@@ -288,7 +288,7 @@ class Peer
 
     header = block.list_header
 
-    rlp_Hn = MyRlp.encode(header)
+    rlp_Hn = RLP.encode(header)
 
     diff = Utils.string_to_int(header[7])
 
@@ -301,7 +301,7 @@ class Peer
   end
 
   def deserialize(db, rlpdata)
-    header_args, transaction_list, uncles = MyRlp.decode(rlpdata)
+    header_args, transaction_list, uncles = RLP.decode(rlpdata)
     kargs = deserialize_header(header_args)
     kargs['header'] = header_args
     kargs['transaction_list'] = transaction_list
@@ -382,14 +382,14 @@ class Peer
     kargs["state_root"] = header_args[3]
     kargs["tx_list_root"] = header_args[4]
     kargs["receipts_root"] = header_args[5]
-    kargs["bloom"] = MyRlp.big_endian_to_int(header_args[6])
+    kargs["bloom"] = RLP.big_endian_to_int(header_args[6])
     #kargs["hex_difficulty"] = header_args[7]
-    kargs["difficulty"] = MyRlp.big_endian_to_int(header_args[7])
-    kargs["number"] = MyRlp.big_endian_to_int(header_args[8])
+    kargs["difficulty"] = RLP.big_endian_to_int(header_args[7])
+    kargs["number"] = RLP.big_endian_to_int(header_args[8])
     #binding.pry
-    kargs["gas_limit"] = MyRlp.big_endian_to_int(header_args[9])
-    kargs["gas_used"] = MyRlp.big_endian_to_int(header_args[10])
-    kargs["timestamp"] = MyRlp.big_endian_to_int(header_args[11])
+    kargs["gas_limit"] = RLP.big_endian_to_int(header_args[9])
+    kargs["gas_used"] = RLP.big_endian_to_int(header_args[10])
+    kargs["timestamp"] = RLP.big_endian_to_int(header_args[11])
     kargs["extra_data"] = header_args[12]
     kargs["nonce"] = header_args[13]
 
