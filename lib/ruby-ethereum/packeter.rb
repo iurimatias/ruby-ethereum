@@ -122,8 +122,8 @@ class Packeter
 
   def package(data)
     payload = RLP.encode(Utils.recursive_int_to_big_endian(data))
-    packet = ienc4(0x22400891).to_s
-    packet += ienc4(payload.length).to_s
+    packet = Utils.ienc4(0x22400891).to_s
+    packet += Utils.ienc4(payload.length).to_s
     packet += payload.to_s
     packet
   end
