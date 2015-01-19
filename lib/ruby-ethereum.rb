@@ -17,5 +17,6 @@ require_relative 'ruby-ethereum/utils'
 require_relative 'ruby-ethereum/rlp'
 require_relative 'ruby-ethereum/client'
 require_relative 'ruby-ethereum/buffer'
+require_relative 'ruby-ethereum/transaction'
 require_relative 'ruby-ethereum/version'
 
