@@ -24,6 +24,10 @@ class Peer
     #  puts "client> Peer List > #{@ip}:#{@port}"
     #  connection.send_data packet.peers_packet
     #end
+    @buffer = Buffer.new
+    @buffer.on_receiving_package do |package|
+      handle_package(package)
+    end
   end
 
   def on_connect
@@ -43,10 +47,11 @@ class Peer
   end
 
   def receive_data(data)
-    return if needs_more_data?(data)
+    @buffer.receive(data)
+  end
 
-    _, cmd, payload, remain = unpack(@data)
-    @data = ""
+  def handle_package(package)
+    cmd, payload = unpack(package)
 
     puts "#{@ip}:#{@port}> #{p2p_cmd(cmd)}"
 
@@ -83,8 +88,10 @@ class Peer
         @best_hash = payload.last
         #send_get_blocks
         packet = Packeter.new
+        puts "client> get block hashes > #{@ip}:#{@port}"
         @connection.send_data packet.get_block_hashes_packet(self)
       else
+        puts "client> get blocks > #{@ip}:#{@port}"
         send_get_blocks
       end
     when :status
@@ -112,22 +119,13 @@ class Peer
     puts "==!!==!!!=!!!=!!!=="
   end
 
-  def unpack(data)
-    sync_token   = data[0..3]
-    payload_size = Utils.string_to_int(data[4..7])
-    payload      = data[8..(7 + payload_size)]
-    remain       = data[(8 + payload_size)..-1]
+  def unpack(package)
+    payload = RLP.decode(package)
 
-    begin
-    real_payload = RLP.decode(payload)
-    rescue
-      binding.pry
-    end
-    cmd = real_payload[0]
-
+    cmd = payload[0]
     cmd = cmd == "" ? 0 : cmd.ord
 
-    [sync_token, cmd, real_payload[1..-1], remain]
+    [cmd, payload[1..-1]]
   end
 
   def needs_more_data?(data)

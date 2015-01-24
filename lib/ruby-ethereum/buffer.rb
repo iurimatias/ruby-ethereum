@@ -7,7 +7,7 @@ class Buffer
     @payload_size = 0
   end
 
-  def when_receiving_package(&block)
+  def on_receiving_package(&block)
     @blocks << block
   end
 
@@ -33,6 +33,7 @@ class Buffer
     package      = @buffer[8..(7 + @payload_size)]
     remain       = @buffer[(8 + @payload_size)..-1]
     @buffer = ""
+    @payload_size = 0
 
     [package, extract_packages(remain)].flatten
   end
