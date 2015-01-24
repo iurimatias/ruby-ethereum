@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-#require 'ruby-ethereum/client'
+require 'ruby-ethereum'
 
 #bootstrap_ip = "192.168.2.80"
 bootstrap_ip = "poc-7.ethdev.com"
-bootstrap_port = "30303"
 
-#start_server(bootstrap_ip, bootstrap_port)
+#true means it will not accept connections
+connection_only = true
+
+Ethereum::Client.new(remote_host: bootstrap_ip, connection_only: connection_only).start
