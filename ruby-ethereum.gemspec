@@ -26,5 +26,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'digest-sha3'
   s.add_runtime_dependency 'fast_trie'
   s.add_runtime_dependency 'eventmachine'
+  s.add_runtime_dependency 'ecdsa'
+  s.add_runtime_dependency 'base58'
 
 end

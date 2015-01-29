@@ -2,16 +2,20 @@ PATH
   remote: .
   specs:
     ruby-ethereum (0.0.1)
+      base58
       digest-sha3
+      ecdsa
       eventmachine
       fast_trie
 
 GEM
   remote: http://rubygems.org/
   specs:
+    base58 (0.1.0)
     coderay (1.1.0)
     diff-lcs (1.2.5)
     digest-sha3 (1.0.2)
+    ecdsa (1.2.0)
     eventmachine (1.0.4)
     fast_trie (0.5.0)
     method_source (0.8.2)

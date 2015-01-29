@@ -3,6 +3,8 @@ require 'trie'
 require 'socket'
 require 'pry'
 require 'eventmachine'
+require 'ecdsa'
+require 'base58'
 
 require_relative 'ruby-ethereum/block'
 require_relative 'ruby-ethereum/chain_manager'
